@@ -11,8 +11,8 @@ namespace DragonsLair
 
         public void ShowScore(string tournamentName)
         {
-
-            Tournament tournament = new Tournament(tournamentName);
+            TournamentRepo tournamentTest = new TournamentRepo();
+            Tournament tournament = tournamentTest.GetTournament(tournamentName);
             int numberOfRounds = tournament.GetNumberOfRounds();
             List<Team> score = new List<Team>();
             List<Team> test = tournament.GetTeams();
