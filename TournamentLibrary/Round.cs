@@ -14,6 +14,7 @@ namespace TournamentLib
         public Match GetMatch(string teamName1, string teamName2)
         {
             // TODO: Implement this method
+            
             return null;
         }
 
@@ -26,7 +27,12 @@ namespace TournamentLib
         public List<Team> GetWinningTeams()
         {
             // TODO: Implement this method
-            return null;
+            List<Team> winner = new List<Team>();
+            foreach (Match sieger in matches)
+            {
+                winner.Add(sieger.Winner);
+            }
+            return winner;
         }
 
         public List<Team> GetLosingTeams()
