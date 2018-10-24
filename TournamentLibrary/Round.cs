@@ -38,7 +38,20 @@ namespace TournamentLib
         public List<Team> GetLosingTeams()
         {
             // TODO: Implement this method
-            return null;
+            List<Team> looser = new List<Team>();
+            foreach (Match taber in matches)
+            {
+                if(taber.Winner == taber.FirstOpponent)
+                looser.Add(taber.SecondOpponent);
+
+                else
+                {
+                    looser.Add(taber.FirstOpponent);
+                }
+            
+            }
+           
+            return looser;
         }
     }
 }
