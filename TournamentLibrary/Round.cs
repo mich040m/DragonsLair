@@ -13,26 +13,57 @@ namespace TournamentLib
 
         public Match GetMatch(string teamName1, string teamName2)
         {
-            // TODO: Implement this method
+            
+            foreach (Match match in matches)
+            {
+                if (match.FirstOpponent.ToString() == teamName1 && match.SecondOpponent.ToString() == teamName2)
+                {
+                    return match;
+                }
+            }
             return null;
+            
         }
 
-        public bool IsMatchesFinished()
+        public bool isMatchesFinished()
         {
-            // TODO: Implement this method
-            return false;
+            foreach (Match match in matches)
+            { 
+            if (match.Winner == null)
+            {
+                return false;
+            }
+                
+            }
+            return true;
         }
 
         public List<Team> GetWinningTeams()
         {
-            // TODO: Implement this method
-            return null;
+            List<Team> teams = new List<Team>();
+            foreach (Match match in matches)
+            {
+                teams.Add(match.Winner);
+            }
+
+            return teams;
         }
 
         public List<Team> GetLosingTeams()
         {
-            // TODO: Implement this method
-            return null;
+            List<Team> losers = new List<Team>();
+            foreach (Match mac in matches)
+            {
+                if (mac.FirstOpponent == mac.Winner)
+                {
+                    losers.Add(mac.SecondOpponent);
+                }
+                else
+                {
+                    losers.Add(mac.FirstOpponent);
+                }
+            }
+            return losers;
         }
     }
 }

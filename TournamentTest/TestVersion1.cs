@@ -53,7 +53,7 @@ namespace TournamentTest
             for (int round = 0; round < numberOfRounds; round++)
             {
                 Round currentRound = currentTournament.GetRound(round);
-                if (currentRound.IsMatchesFinished() == false)
+                if (currentRound.isMatchesFinished() == false)
                     matchesFinished = false;
             }
             Assert.AreEqual(true, matchesFinished);
