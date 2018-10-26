@@ -5,7 +5,7 @@ namespace TournamentLib
     public class Round
     {
         private List<Match> matches = new List<Match>();
-        
+
         public void AddMatch(Match m)
         {
             matches.Add(m);
@@ -13,57 +13,57 @@ namespace TournamentLib
 
         public Match GetMatch(string teamName1, string teamName2)
         {
-            
-            foreach (Match match in matches)
-            {
-                if (match.FirstOpponent.ToString() == teamName1 && match.SecondOpponent.ToString() == teamName2)
-                {
-                    return match;
-                }
-            }
+            // TODO: Implement this method
             return null;
-            
         }
 
-        public bool isMatchesFinished()
+
+
+        public bool IsMatchesFinished()
         {
-            foreach (Match match in matches)
-            { 
-            if (match.Winner == null)
+            foreach (Match item in matches)
             {
-                return false;
-            }
+                if (item.Winner == null)
+                {
+                    return false;
+                }
                 
             }
             return true;
         }
 
+
+
         public List<Team> GetWinningTeams()
         {
-            List<Team> teams = new List<Team>();
-            foreach (Match match in matches)
-            {
-                teams.Add(match.Winner);
-            }
+            List<Team> winners = new List<Team>();
 
-            return teams;
+            foreach (Match item in matches)
+            {
+                winners.Add(item.Winner);
+            }
+            return winners;
         }
 
         public List<Team> GetLosingTeams()
         {
-            List<Team> losers = new List<Team>();
-            foreach (Match mac in matches)
+            List<Team> loosers = new List<Team>();
+
+            foreach (Match item in matches)
             {
-                if (mac.FirstOpponent == mac.Winner)
+                if (item.FirstOpponent == item.Winner )
                 {
-                    losers.Add(mac.SecondOpponent);
+                    loosers.Add(item.SecondOpponent);
                 }
-                else
+                else if (item.SecondOpponent == item.Winner)
                 {
-                    losers.Add(mac.FirstOpponent);
+                    loosers.Add(item.FirstOpponent);
                 }
+                
             }
-            return losers;
+            
+
+            return loosers;
         }
     }
 }
