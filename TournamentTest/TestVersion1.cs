@@ -39,8 +39,8 @@ namespace TournamentTest
         public void OneWinnerInLastRound()
         {
             // Verifies there is exactly one winner in last round
-            int numberOfRounds = currentTournament.GetNumberOfRounds();
-            Round currentRound = currentTournament.GetRound(numberOfRounds - 1);
+            int numberOfRounds = currentTournament.GetNumberOfRounds(); // output 3
+            Round currentRound = currentTournament.GetRound(numberOfRounds - 1); // henter den sidste runde
             int numberOfWinningTeams = currentRound.GetWinningTeams().Count;
             Assert.AreEqual(1, numberOfWinningTeams);
         }
@@ -49,11 +49,11 @@ namespace TournamentTest
         public void AllMatchesInPreviousRoundsFinished()
         {
             bool matchesFinished = true;
-            int numberOfRounds = currentTournament.GetNumberOfRounds();
+            int numberOfRounds = currentTournament.GetNumberOfRounds(); // output 3
             for (int round = 0; round < numberOfRounds; round++)
             {
-                Round currentRound = currentTournament.GetRound(round);
-                if (currentRound.isMatchesFinished() == false)
+                Round currentRound = currentTournament.GetRound(round); // 0, 1, 2 runde
+                if (currentRound.IsMatchesFinished() == false)
                     matchesFinished = false;
             }
             Assert.AreEqual(true, matchesFinished);
