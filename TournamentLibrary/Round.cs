@@ -13,58 +13,57 @@ namespace TournamentLib
 
         public Match GetMatch(string teamName1, string teamName2)
         {
-            // TODO: Implement this method
-            foreach (Match m in matches)
+            
+            foreach (Match match in matches)
             {
-                if (teamName1 == m.FirstOpponent.ToString() && teamName2 == m.SecondOpponent.ToString())
+                if (match.FirstOpponent.ToString() == teamName1 && match.SecondOpponent.ToString() == teamName2)
                 {
-                    return m;
+                    return match;
                 }
             }
             return null;
+            
         }
 
-        public bool IsMatchesFinished()
+        public bool isMatchesFinished()
         {
-            // TODO: Implement this method
-            foreach (Match m in matches)
+            foreach (Match match in matches)
+            { 
+            if (match.Winner == null)
             {
-                if(m.Winner == null)
-                {
-                    return false;
-                }
+                return false;
+            }
+                
             }
             return true;
         }
 
         public List<Team> GetWinningTeams()
         {
-            // TODO: Implement this method
-            List<Team> winner = new List<Team>();
-            foreach (Match sieger in matches)
+            List<Team> teams = new List<Team>();
+            foreach (Match match in matches)
             {
-                winner.Add(sieger.Winner);
+                teams.Add(match.Winner);
             }
-            return winner;
+
+            return teams;
         }
 
         public List<Team> GetLosingTeams()
         {
-            // TODO: Implement this method
-            List<Team> looser = new List<Team>();
-            foreach (Match taber in matches)
+            List<Team> losers = new List<Team>();
+            foreach (Match mac in matches)
             {
-                if(taber.Winner == taber.FirstOpponent)
-                looser.Add(taber.SecondOpponent);
-
+                if (mac.FirstOpponent == mac.Winner)
+                {
+                    losers.Add(mac.SecondOpponent);
+                }
                 else
                 {
-                    looser.Add(taber.FirstOpponent);
+                    losers.Add(mac.FirstOpponent);
                 }
-            
             }
-           
-            return looser;
+            return losers;
         }
     }
 }
