@@ -11,10 +11,11 @@ namespace DragonsLair
 
         public void ShowScore(string tournamentName)
         {
-            TournamentRepo tournamentTest = new TournamentRepo();
-            Tournament tournament = tournamentTest.GetTournament(tournamentName);
+            
+            Tournament tournament = tournamentRepository.GetTournament(tournamentName);
             int numberOfRounds = tournament.GetNumberOfRounds();
             List<Team> score = new List<Team>();
+            List<Team> score2 = new List<Team>();
             List<Team> test = tournament.GetTeams();
             for (int i = 0; i < numberOfRounds; i++)
             {
@@ -31,7 +32,7 @@ namespace DragonsLair
             List<string> distinct = s.Distinct().ToList();
 
 
-            int[] testVar = new int[distinct.Count];
+            int[] testVar = new int[s2.Count];
             
             
             for (int i = 0; i < distinct.Count; i++)
@@ -46,7 +47,30 @@ namespace DragonsLair
 
             }
 
-                SortedDictionary<string, int> keyValuePairs = new SortedDictionary<string, int>();
+            for (int i = 0; i < numberOfRounds; i++)
+            {
+                Round currentRound = tournament.GetRound(i);
+                score2.AddRange(currentRound.GetLosingTeams());
+            }
+            List<string> s3 = new List<string>();
+            foreach (Team i in score2)
+                s3.Add(i.ToString());
+            s3 = s3.Distinct().ToList();
+            int v1 = s3.Count;
+
+            for (int i = 0; i < s3.Count; i++)
+            {
+                
+                    
+                    
+                        s3.RemoveAll(item => item == distinct[i]);
+                    
+                
+            }
+            
+            distinct.AddRange(s3);
+
+                Dictionary<string, int> keyValuePairs = new Dictionary<string, int>();
             for (int i = 0; i < testVar.Length; i++)
             {
                 keyValuePairs.Add(distinct[i], testVar[i]);
