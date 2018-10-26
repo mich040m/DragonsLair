@@ -86,12 +86,14 @@ namespace DragonsLair
 
         public TournamentRepo GetTournamentRepository()
         {
-            throw new NotImplementedException();
+            TournamentRepo t = new TournamentRepo();
+            return t;
         }
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
             // Do not implement this method
+            GetTournamentRepository();
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
