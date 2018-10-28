@@ -86,8 +86,8 @@ namespace DragonsLair
 
         public TournamentRepo GetTournamentRepository()
         {
-            TournamentRepo t = new TournamentRepo();
-            return t;
+            
+            return tournamentRepository;
         }
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
@@ -96,11 +96,10 @@ namespace DragonsLair
             Round lastRound = new Round();
             List<Team> teams = new List<Team>();
             Team oldFreeRider;
-            Team newFreeRider = null;
+            
             int numberOfRounds;
             bool isRoundFinished;
 
-            tournamentRepository = GetTournamentRepository();
             Tournament t = tournamentRepository.GetTournament(tournamentName);
             numberOfRounds = t.GetNumberOfRounds();
 
@@ -128,11 +127,11 @@ namespace DragonsLair
                     teams = lastRound.GetWinningTeams();
                     if (lastRound.FreeRider != null)
                     {
-                        lastRound.FreeRider = lastRound.FreeRider;
+                        teams.Add(lastRound.FreeRider);
                     }
                 }
 
-                if (teams.Count <= 2)
+                if (teams.Count >= 2)
                 {
                     Round newRound = new Round();
                     
@@ -146,21 +145,18 @@ namespace DragonsLair
                         {
                             oldFreeRider = null;
                         }
-                        for (int i = 0; i < teams.Count; i++)
+                        Team newFreeRider = null;
+
+
+                        int i=0;
+                        do
                         {
-                            if (newFreeRider.ToString() != oldFreeRider.ToString())
-                            {
-                                newFreeRider = teams[i];
-                            }
-                        }
-                        lastRound.FreeRider = newFreeRider;
-                        for (int i = 0; i < teams.Count; i++)
-                        {
-                            if (teams[i].ToString() == newFreeRider.ToString())
-                            {
-                                teams.Remove(teams[i]);
-                            }
-                        }
+                            newFreeRider = teams[i];
+                            i++;
+                        } while (newFreeRider == oldFreeRider);
+
+                        newRound.FreeRider = newFreeRider;
+                        teams.Remove(newFreeRider);
 
 
                     }
