@@ -148,22 +148,34 @@ namespace DragonsLair
                         }
                         for (int i = 0; i < teams.Count; i++)
                         {
-                            if (newFreeRider != oldFreeRider)
+                            if (newFreeRider.ToString() != oldFreeRider.ToString())
                             {
                                 newFreeRider = teams[i];
                             }
                         }
                         lastRound.FreeRider = newFreeRider;
 
-                        for (int i = 0; i < teams.Count; i++)
+                       
+                        
+                    }
+                    
+                    for (int i = 0; i < teams.Count; i++)
+                    {
+                        if (teams[i].ToString() == newFreeRider.ToString()) 
                         {
-                            if (teams[i] == null ) // pause
-                            {
-
-                            }
+                            teams.Remove(teams[i]);
                         }
                     }
                 }
+                else
+                {
+                    throw new Exception("Tourment is finished");
+                }
+
+            }
+            else
+            {
+                throw new Exception("Round is not Finished");
             }
         }
 
