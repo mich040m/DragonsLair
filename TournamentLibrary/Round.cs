@@ -6,6 +6,10 @@ namespace TournamentLib
     {
         private List<Match> matches = new List<Match>();
 
+        private Team freeRider = null;
+
+        public Team FreeRider { get {   return freeRider; }set { freeRider = value; } }
+
         public void AddMatch(Match m)
         {
             matches.Add(m);
@@ -13,9 +17,16 @@ namespace TournamentLib
 
         public Match GetMatch(string teamName1, string teamName2)
         {
-            // TODO: Implement this method
+            foreach (Match mac in matches)
+            {
+                if (mac.FirstOpponent.ToString() == teamName1 && mac.SecondOpponent.ToString() == teamName2)
+                {
+                    return mac;
+                }
+            }
             return null;
         }
+
 
 
 

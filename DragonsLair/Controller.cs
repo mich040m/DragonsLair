@@ -86,22 +86,29 @@ namespace DragonsLair
 
         public TournamentRepo GetTournamentRepository()
         {
-            return tournamentRepository;
+            TournamentRepo t = new TournamentRepo();
+            return t;
         }
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
-            // Do not implement this method
-            Round r = new Round();
-            Tournament t = tournamentRepository.GetTournament(tournamentName);
-            int numberOfRounds = t.GetNumberOfRounds();
+            TournamentRepo e = new TournamentRepo();
+            Round lastRound = new Round();
+            List<Team> teams = new List<Team>();
+            Team oldFreeRider;
+            Team newFreeRider = null;
+            int numberOfRounds;
             bool isRoundFinished;
-            Round lastRound;
 
-            if(numberOfRounds == 0)
+            e = GetTournamentRepository();
+            Tournament t = e.GetTournament(tournamentName);
+            numberOfRounds = t.GetNumberOfRounds();
+
+            if (numberOfRounds == 0)
             {
-                lastRound = null;
                 isRoundFinished = true;
+                lastRound = null;
+
             }
             else
             {
@@ -109,9 +116,54 @@ namespace DragonsLair
                 isRoundFinished = lastRound.IsMatchesFinished();
             }
 
-            if (isRoundFinished)
+            if (isRoundFinished == true)
             {
+                if (lastRound == null)
+                {
+                    teams = t.GetTeams();
 
+                }
+                else
+                {
+                    teams = lastRound.GetWinningTeams();
+                    if (lastRound.FreeRider != null)
+                    {
+                        lastRound.FreeRider = lastRound.FreeRider;
+                    }
+                }
+
+                if (teams.Count >= 2)
+                {
+                    Round newRound = new Round();
+
+                    if (teams.Count % 2 != 0)
+                    {
+                        if (numberOfRounds > 0)
+                        {
+                            oldFreeRider = lastRound.FreeRider;
+                        }
+                        else
+                        {
+                            oldFreeRider = null;
+                        }
+                        for (int i = 0; i < teams.Count; i++)
+                        {
+                            if (newFreeRider != oldFreeRider)
+                            {
+                                newFreeRider = teams[i];
+                            }
+                        }
+                        lastRound.FreeRider = newFreeRider;
+
+                        for (int i = 0; i < teams.Count; i++)
+                        {
+                            if (teams[i] == null ) // pause
+                            {
+
+                            }
+                        }
+                    }
+                }
             }
         }
 
