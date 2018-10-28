@@ -10,12 +10,8 @@ namespace DragonsLair
     {
         static void Main(string[] args)
         {
-            //Program myProgram = new Program();
-            //myProgram.Run();
-
-            // Test to ShowScore Method
-            Controller controller = new Controller();
-            controller.ShowScore("Vinter Turnering");
+            Program myProgram = new Program();
+            myProgram.Run();
         }
 
         void Run()

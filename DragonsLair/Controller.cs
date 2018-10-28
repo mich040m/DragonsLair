@@ -92,8 +92,79 @@ namespace DragonsLair
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
-            // Do not implement this method
-            GetTournamentRepository();
+            TournamentRepo e = new TournamentRepo();
+            Round lastRound = new Round();
+            List<Team> teams = new List<Team>();
+            Team oldFreeRider;
+            Team newFreeRider = null;
+            int numberOfRounds;
+            bool isRoundFinished;
+
+            e = GetTournamentRepository();
+            Tournament t = e.GetTournament(tournamentName);
+            numberOfRounds = t.GetNumberOfRounds();
+
+            if (numberOfRounds == 0)
+            {
+                isRoundFinished = true;
+                lastRound = null;
+
+            }
+            else
+            {
+                lastRound = t.GetRound(numberOfRounds - 1);
+                isRoundFinished = lastRound.IsMatchesFinished();
+            }
+
+            if (isRoundFinished == true)
+            {
+                if (lastRound == null)
+                {
+                    teams = t.GetTeams();
+
+                }
+                else
+                {
+                    teams = lastRound.GetWinningTeams();
+                    if (lastRound.FreeRider != null)
+                    {
+                        lastRound.FreeRider = lastRound.FreeRider;
+                    }
+                }
+
+                if (teams.Count >= 2)
+                {
+                    Round newRound = new Round();
+
+                    if (teams.Count % 2 != 0)
+                    {
+                        if (numberOfRounds > 0)
+                        {
+                            oldFreeRider = lastRound.FreeRider;
+                        }
+                        else
+                        {
+                            oldFreeRider = null;
+                        }
+                        for (int i = 0; i < teams.Count; i++)
+                        {
+                            if (newFreeRider != oldFreeRider)
+                            {
+                                newFreeRider = teams[i];
+                            }
+                        }
+                        lastRound.FreeRider = newFreeRider;
+
+                        for (int i = 0; i < teams.Count; i++)
+                        {
+                            if (teams[i] == null ) // pause
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
