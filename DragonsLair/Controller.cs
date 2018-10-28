@@ -92,7 +92,7 @@ namespace DragonsLair
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
-            TournamentRepo e = new TournamentRepo();
+            
             Round lastRound = new Round();
             List<Team> teams = new List<Team>();
             Team oldFreeRider;
@@ -100,8 +100,8 @@ namespace DragonsLair
             int numberOfRounds;
             bool isRoundFinished;
 
-            e = GetTournamentRepository();
-            Tournament t = e.GetTournament(tournamentName);
+            tournamentRepository = GetTournamentRepository();
+            Tournament t = tournamentRepository.GetTournament(tournamentName);
             numberOfRounds = t.GetNumberOfRounds();
 
             if (numberOfRounds == 0)
@@ -120,7 +120,7 @@ namespace DragonsLair
             {
                 if (lastRound == null)
                 {
-                    teams = t.GetTeams();
+                    teams = t.GetTeams().ToList();
 
                 }
                 else
@@ -132,10 +132,10 @@ namespace DragonsLair
                     }
                 }
 
-                if (teams.Count >= 2)
+                if (teams.Count <= 2)
                 {
                     Round newRound = new Round();
-
+                    
                     if (teams.Count % 2 != 0)
                     {
                         if (numberOfRounds > 0)
@@ -154,18 +154,25 @@ namespace DragonsLair
                             }
                         }
                         lastRound.FreeRider = newFreeRider;
-
-                       
-                        
-                    }
-                    
-                    for (int i = 0; i < teams.Count; i++)
-                    {
-                        if (teams[i].ToString() == newFreeRider.ToString()) 
+                        for (int i = 0; i < teams.Count; i++)
                         {
-                            teams.Remove(teams[i]);
+                            if (teams[i].ToString() == newFreeRider.ToString())
+                            {
+                                teams.Remove(teams[i]);
+                            }
                         }
+
+
                     }
+                    for (int i = 0; i < teams.Count; i+=2)
+                    {
+                        Match m = new Match();
+                        m.FirstOpponent = teams[i];
+                        m.SecondOpponent = teams[i + 1];
+                        newRound.AddMatch(m);
+                    }
+                   
+                    t.AddRound(newRound);
                 }
                 else
                 {
@@ -177,6 +184,7 @@ namespace DragonsLair
             {
                 throw new Exception("Round is not Finished");
             }
+
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
