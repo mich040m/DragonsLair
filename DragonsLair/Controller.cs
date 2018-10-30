@@ -86,14 +86,33 @@ namespace DragonsLair
 
         public TournamentRepo GetTournamentRepository()
         {
-            TournamentRepo t = new TournamentRepo();
-            return t;
+            return tournamentRepository;
         }
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
             // Do not implement this method
-            GetTournamentRepository();
+            Round r = new Round();
+            Tournament t = tournamentRepository.GetTournament(tournamentName);
+            int numberOfRounds = t.GetNumberOfRounds();
+            bool isRoundFinished;
+            Round lastRound;
+
+            if(numberOfRounds == 0)
+            {
+                lastRound = null;
+                isRoundFinished = true;
+            }
+            else
+            {
+                lastRound = t.GetRound(numberOfRounds - 1);
+                isRoundFinished = lastRound.IsMatchesFinished();
+            }
+
+            if (isRoundFinished)
+            {
+
+            }
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)

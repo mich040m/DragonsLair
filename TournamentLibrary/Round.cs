@@ -27,7 +27,6 @@ namespace TournamentLib
                 {
                     return false;
                 }
-                
             }
             return true;
         }
@@ -59,10 +58,7 @@ namespace TournamentLib
                 {
                     loosers.Add(item.FirstOpponent);
                 }
-                
             }
-            
-
             return loosers;
         }
     }
