@@ -27,8 +27,15 @@ namespace TournamentLib
             return null;
         }
 
-        public Match GetMatch(string Winner)
+        public Match GetMatch(string winner)
         {
+            foreach(Match m in matches)
+            {
+                if(winner == m.FirstOpponent.Name || winner == m.SecondOpponent.Name)
+                {
+                    return m;
+                }
+            }
             return null;
         }
 
