@@ -27,6 +27,11 @@ namespace TournamentLib
             return null;
         }
 
+        public Match GetMatch(string Winner)
+        {
+            return null;
+        }
+
 
 
 
