@@ -187,7 +187,20 @@ namespace DragonsLair
 
         public void SaveMatch(string tournamentName, int roundNumber, string winningTeam)
         {
-            // Do not implement this method
+            Tournament t = tournamentRepository.GetTournament(tournamentName);
+            Round r = t.GetRound(roundNumber);
+            Match m = r.GetMatch(winningTeam);
+
+            if(m != null && m.Winner == null)
+            {
+                Team w = t.GetTeam(winningTeam);
+                Console.WriteLine("Vinderen er registrerert!!!!!! UUUUUHHHHHH");
+                m.Winner = w;
+            }
+            else
+            {
+                Console.WriteLine("EEEEEEYYY are you braindead?!");
+            }
         }
     }
 }
