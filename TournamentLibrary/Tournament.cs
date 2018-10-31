@@ -21,7 +21,15 @@ namespace TournamentLib
 
         public Team GetTeam(string teamName)
         {
-            throw new System.NotImplementedException();
+            foreach(Team t in teams)
+            {
+                if(teamName == t.Name)
+                {
+                    return t;
+                }
+                
+            }
+            return null;
         }
 
         public void AddTeam(Team team)
