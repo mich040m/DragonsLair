@@ -183,7 +183,7 @@ namespace DragonsLair
 
         }
 
-        public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
+        public void SaveMatch(string tournamentName, int roundNumber, string winningTeam)
         {
             // Do not implement this method
         }

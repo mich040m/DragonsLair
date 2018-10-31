@@ -8,9 +8,7 @@ namespace ControllerTest
     [TestClass]
     public class TestVersion1
     {
-        Controller controller;
-        TournamentRepo currentRepo;
-        Tournament currentTournament;
+        
 
         [TestInitialize]
         public void SetupForTest()
@@ -45,7 +43,9 @@ namespace ControllerTest
         }
 
 
-
+        Controller controller;
+        TournamentRepo currentRepo;
+        Tournament currentTournament;
 
         [TestMethod]
         public void TestOddNumberOfTeamsGivesFreeRider()
@@ -82,6 +82,5 @@ namespace ControllerTest
             Match m = currentTournament.GetRound(1).GetMatch(winnerName);
             Assert.AreEqual(winnerName, m.Winner.Name);
         }
-
     }
 }
