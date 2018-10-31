@@ -19,6 +19,11 @@ namespace TournamentLib
             return teams;
         }
 
+        public Team GetTeam(string teamName)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void AddTeam(Team team)
         {
             teams.Add(team);
