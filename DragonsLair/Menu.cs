@@ -74,16 +74,12 @@ namespace DragonsLair
             Console.Write("Angiv navn på turnering: ");
             string tournamentName = Console.ReadLine();
             Console.Write("Angiv runde: ");
-            string round = Console.ReadLine();
-            int roundnr = int.Parse(round);
-            Console.Write("Angiv første modstander: ");
-            string opponent1 = Console.ReadLine();
-            Console.Write("Angiv anden modstander: ");
-            string opponent2 = Console.ReadLine();
+            int round = int.Parse(Console.ReadLine());
             Console.Write("Angiv vinderhold: ");
             string winner = Console.ReadLine();
             Console.Clear();
-            control.SaveMatch(tournamentName, roundnr, opponent1, opponent2, winner);
+            control.SaveMatch(tournamentName, round, winner);
         }
+
     }
 }
