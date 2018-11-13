@@ -8,9 +8,7 @@ namespace ControllerTest
     [TestClass]
     public class TestVersion1
     {
-        Controller controller;
-        TournamentRepo currentRepo;
-        Tournament currentTournament;
+        
 
         [TestInitialize]
         public void SetupForTest()
@@ -42,6 +40,47 @@ namespace ControllerTest
 
             Assert.AreEqual(1, currentTournament.GetNumberOfRounds());
             Assert.AreEqual(9, currentTournament.GetTeams().Count);
+        }
+
+
+        Controller controller;
+        TournamentRepo currentRepo;
+        Tournament currentTournament;
+
+        [TestMethod]
+        public void TestOddNumberOfTeamsGivesFreeRider()
+        {
+            currentTournament.AddTeam(new Team("The Andals")); // Add the nine'th team
+            controller.ScheduleNewRound("Vinter Turnering", false);
+            Assert.AreNotEqual(null, currentTournament.GetRound(0).FreeRider);
+        }
+
+        [TestMethod]
+        public void TestWinningTeamInRound0IsRegistered()
+        {
+            String winnerName = "The Spartans";
+            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.SaveMatch("Vinter Turnering", 0, winnerName);
+            Match m = currentTournament.GetRound(0).GetMatch(winnerName);
+            Assert.AreEqual(winnerName, m.Winner.Name);
+        }
+
+        [TestMethod]
+        public void TestWinningTeamInRound1IsRegistered()
+        {
+            String winnerName = "The Coans";
+
+            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.SaveMatch("Vinter Turnering", 0, "The Spartans");
+            controller.SaveMatch("Vinter Turnering", 0, "The Cretans");
+            controller.SaveMatch("Vinter Turnering", 0, "The Coans");
+            controller.SaveMatch("Vinter Turnering", 0, "The Megareans");
+
+            controller.ScheduleNewRound("Vinter Turnering", false);
+            controller.SaveMatch("Vinter Turnering", 1, winnerName);
+
+            Match m = currentTournament.GetRound(1).GetMatch(winnerName);
+            Assert.AreEqual(winnerName, m.Winner.Name);
         }
     }
 }
