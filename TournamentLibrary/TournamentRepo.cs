@@ -6,6 +6,7 @@ namespace TournamentLib
     {
         private Tournament winterTournament = new Tournament("Vinter Turnering");
 
+
         public Tournament GetTournament(string name)
         {
             if (name == "Vinter Turnering")

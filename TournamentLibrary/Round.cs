@@ -6,6 +6,15 @@ namespace TournamentLib
     {
         private List<Match> matches = new List<Match>();
 
+        public void metode()
+        {
+            foreach (Match item in matches)
+            {
+                SQL.InsertToMatches(item.FirstOpponent.Name.ToString(), item.SecondOpponent.Name.ToString(), item.Winner.Name.ToString());
+
+            }
+        }
+
         private Team freeRider = null;
 
         public Team FreeRider { get {   return freeRider; }set { freeRider = value; } }
@@ -13,6 +22,7 @@ namespace TournamentLib
         public void AddMatch(Match m)
         {
             matches.Add(m);
+
         }
 
         public Match GetMatch(string teamName1, string teamName2)
@@ -39,9 +49,7 @@ namespace TournamentLib
             return null;
         }
 
-
-
-
+        
         public bool IsMatchesFinished()
         {
             foreach (Match item in matches)
@@ -50,11 +58,11 @@ namespace TournamentLib
                 {
                     return false;
                 }
+                
             }
+
             return true;
         }
-
-
 
         public List<Team> GetWinningTeams()
         {
