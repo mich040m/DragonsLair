@@ -6,6 +6,6 @@
         public Team SecondOpponent { get; set; }
         public Team Winner { get; set; } = null;
 
-
+        
     }
 }

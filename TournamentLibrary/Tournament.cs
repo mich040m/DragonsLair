@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System;
 
 namespace TournamentLib
 {
@@ -14,11 +15,22 @@ namespace TournamentLib
         public Tournament(string tournamentName)
         {
             Name = tournamentName;
+
+            SQL.InsertToTable(tournamentName, "TOURNAMENT");
+            
+
         }
 
         public List<Team> GetTeams()
         {
+            SetupTestTeams();
+            for (int i = 0; i < teams.Count; i++)
+            {
+                SQL.InsertToTable(teams[i].ToString(), "TEAM");
+
+            }
             return teams;
+            
         }
 
         public Team GetTeam(string teamName)
