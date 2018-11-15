@@ -39,9 +39,7 @@ namespace TournamentLib
             return null;
         }
 
-
-
-
+        
         public bool IsMatchesFinished()
         {
             foreach (Match item in matches)
@@ -53,8 +51,6 @@ namespace TournamentLib
             }
             return true;
         }
-
-
 
         public List<Team> GetWinningTeams()
         {

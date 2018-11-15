@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace TournamentLib
 {
     public class Tournament
     {
+
         private List<Team> teams = new List<Team>();
         private List<Round> rounds = new List<Round>();
 
@@ -35,6 +37,8 @@ namespace TournamentLib
         public void AddTeam(Team team)
         {
             teams.Add(team);
+
+
         }
 
         public int GetNumberOfRounds()
@@ -66,6 +70,8 @@ namespace TournamentLib
                 new Team("The Cnideans"),
                 new Team("The Megareans"),
                 new Team("The Corinthians")
+
+
             };
         }
         public void SetupTestRounds()
