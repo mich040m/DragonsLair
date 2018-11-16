@@ -16,6 +16,7 @@ namespace TournamentLib
 
         public List<Team> GetTeams()
         {
+            SetupTestTeams();
             return teams;
         }
 
