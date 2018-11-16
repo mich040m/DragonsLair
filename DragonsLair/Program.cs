@@ -11,10 +11,12 @@ namespace DragonsLair
     {
         static void Main(string[] args)
         {
-            // Program myProgram = new Program();
+            //Program myProgram = new Program();
             //myProgram.Run();
             Controller controller = new Controller();
             controller.ScheduleNewRound("Vinter Turnering");
+
+            TournamentLib.Round r = new TournamentLib.Round();
         }
 
         void Run()

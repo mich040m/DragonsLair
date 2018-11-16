@@ -133,7 +133,7 @@ namespace DragonsLair
                     }
                 }
 
-                if (teams.Count >= 2)
+                if (teams.Count > 1)
                 {
                     Round newRound = new Round();
                     

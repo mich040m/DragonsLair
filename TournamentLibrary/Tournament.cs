@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using System;
 
 namespace TournamentLib
 {
     public class Tournament
     {
+
         private List<Team> teams = new List<Team>();
         private List<Round> rounds = new List<Round>();
 
@@ -12,12 +15,22 @@ namespace TournamentLib
         public Tournament(string tournamentName)
         {
             Name = tournamentName;
+
+            SQL.InsertToTable(tournamentName, "TOURNAMENT");
+            
+
         }
 
         public List<Team> GetTeams()
         {
             SetupTestTeams();
+            for (int i = 0; i < teams.Count; i++)
+            {
+                SQL.InsertToTable(teams[i].ToString(), "TEAM");
+
+            }
             return teams;
+            
         }
 
         public Team GetTeam(string teamName)
@@ -36,6 +49,8 @@ namespace TournamentLib
         public void AddTeam(Team team)
         {
             teams.Add(team);
+
+
         }
 
         public int GetNumberOfRounds()
@@ -67,6 +82,8 @@ namespace TournamentLib
                 new Team("The Cnideans"),
                 new Team("The Megareans"),
                 new Team("The Corinthians")
+
+
             };
         }
         public void SetupTestRounds()
