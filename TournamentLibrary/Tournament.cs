@@ -6,7 +6,6 @@ namespace TournamentLib
 {
     public class Tournament
     {
-
         private List<Team> teams = new List<Team>();
         private List<Round> rounds = new List<Round>();
 
@@ -27,7 +26,6 @@ namespace TournamentLib
             for (int i = 0; i < teams.Count; i++)
             {
                 SQL.InsertToTable(teams[i].ToString(), "TEAM");
-
             }
             return teams;
             

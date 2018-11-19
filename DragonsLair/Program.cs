@@ -10,8 +10,8 @@ namespace DragonsLair
     {
         static void Main(string[] args)
         {
-            //Program myProgram = new Program();
-            //myProgram.Run();
+            Program myProgram = new Program();
+            myProgram.Run();
             Controller controller = new Controller();
             controller.ScheduleNewRound("Vinter Turnering");
 
