@@ -16,7 +16,7 @@ namespace TournamentLib
         {
             Name = tournamentName;
 
-            SQL.InsertToTable(tournamentName, "TOURNAMENT");
+            
             
 
         }
