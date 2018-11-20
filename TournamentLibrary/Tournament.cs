@@ -70,7 +70,7 @@ namespace TournamentLib
         // ** Setup Test ***************
         public void SetupTestTeams()
         {
-            teams = new List<Team>
+             teams = new List<Team>
             {
                 new Team("The Valyrians"),
                 new Team("The Spartans"),

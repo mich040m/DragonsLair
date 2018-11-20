@@ -187,7 +187,7 @@ namespace DragonsLair
 
         public void ScheduleNewTournament(string name)
         {
-            tournamentRepository.SaveTournament(name, tournamentRepository);
+            tournamentRepository.SaveTournament(name);
         }
         public void SaveMatch(string tournamentName, int roundNumber, string winningTeam)
         {
@@ -211,7 +211,7 @@ namespace DragonsLair
         }
         public void ShowAllTournaments()
         {
-            tournamentRepository.ShowAllTournaments(tournamentRepository);
+            tournamentRepository.ShowAllTournaments();
         }
     }
 }
