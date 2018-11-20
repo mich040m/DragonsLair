@@ -94,10 +94,7 @@ namespace DragonsLair
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
-            Round DB = new Round();
-
-            //DB.GetMatchesForDB();
-
+            
             Round lastRound = new Round();
             List<Team> teams = new List<Team>();
             Team oldFreeRider;
@@ -171,11 +168,9 @@ namespace DragonsLair
                         m.FirstOpponent = teams[i];
                         m.SecondOpponent = teams[i + 1];
                         newRound.AddMatch(m);
-                       // DB.GetMatchesForDB();
                     }
                    
                     t.AddRound(newRound);
-                    //DB.GetMatchesForDB();
                 }
                 else
                 {
@@ -190,6 +185,10 @@ namespace DragonsLair
 
         }
 
+        public void ScheduleNewTournament(string name)
+        {
+            tournamentRepository.SaveTournament(name, tournamentRepository);
+        }
         public void SaveMatch(string tournamentName, int roundNumber, string winningTeam)
         {
             Tournament t = tournamentRepository.GetTournament(tournamentName);
@@ -207,7 +206,9 @@ namespace DragonsLair
                 Console.WriteLine("EEEEEEYYY are you braindead?!");
             }
         }
-
-       
+        public void ShowAllTournaments()
+        {
+            tournamentRepository.ShowAllTournaments(tournamentRepository);
+        }
     }
 }
