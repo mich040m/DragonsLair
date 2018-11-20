@@ -26,7 +26,7 @@ namespace TournamentLib
             SetupTestTeams();
             for (int i = 0; i < teams.Count; i++)
             {
-                SQL.InsertToTable(teams[i].ToString(), "TEAM");
+               SQL.InsertToTable(teams[i].ToString(), "TEAM");
 
             }
             return teams;

@@ -6,21 +6,14 @@ namespace TournamentLib
     {
         private List<Match> matches = new List<Match>();
 
-        public void metode()
-        {
-            foreach (Match item in matches)
-            {
-                SQL.InsertToMatches(item.FirstOpponent.Name.ToString(), item.SecondOpponent.Name.ToString(), item.Winner.Name.ToString());
-
-            }
-        }
-
         private Team freeRider = null;
 
         public Team FreeRider { get {   return freeRider; }set { freeRider = value; } }
 
         public void AddMatch(Match m)
         {
+            TournamentLib.SQL.InsertFirstOpponent(m.FirstOpponent.ToString(), "MATCHES");
+            TournamentLib.SQL.InsertSecondOpponent(m.SecondOpponent.ToString(), "MATCHES");
             matches.Add(m);
 
         }
@@ -41,8 +34,12 @@ namespace TournamentLib
         {
             foreach(Match m in matches)
             {
-                if(winner == m.FirstOpponent.Name || winner == m.SecondOpponent.Name)
+                TournamentLib.SQL.InsertFirstOpponent(m.FirstOpponent.Name.ToString(), "MATCHES");
+                TournamentLib.SQL.InsertSecondOpponent(m.SecondOpponent.Name.ToString(), "MATCHES");
+
+                if (winner == m.FirstOpponent.Name || winner == m.SecondOpponent.Name)
                 {
+                    TournamentLib.SQL.InsertWinningTeam(m.Winner.Name.ToString(), "MATCHES");
                     return m;
                 }
             }
@@ -71,6 +68,7 @@ namespace TournamentLib
             foreach (Match item in matches)
             {
                 winners.Add(item.Winner);
+                TournamentLib.SQL.InsertWinningTeam(item.Winner.Name.ToString(), "Matches");
             }
             return winners;
         }
@@ -91,6 +89,15 @@ namespace TournamentLib
                 }
             }
             return loosers;
+        }
+
+
+        public void GetMatchesForDB()
+        {
+            foreach(Match item in matches)
+            {
+                TournamentLib.SQL.InsertToMatches(item.FirstOpponent.Name.ToString(), item.SecondOpponent.Name.ToString(), item.Winner.Name.ToString());
+            }
         }
     }
 }

@@ -15,7 +15,8 @@ namespace DragonsLair
             Controller controller = new Controller();
             controller.ScheduleNewRound("Vinter Turnering");
 
-            TournamentLib.Round r = new TournamentLib.Round();
+            // TournamentLib.Round r = new TournamentLib.Round();
+            Console.ReadKey();
         }
 
         void Run()
