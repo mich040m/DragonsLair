@@ -23,14 +23,14 @@ namespace TournamentLib
         {
             matches.Add(m);
 
-            if (m.Winner == null)
-            {
-                SQL.InsertToMatches(m.FirstOpponent.Name.ToString(), m.SecondOpponent.Name.ToString(), "INTET");
-            }
-            else
-            {
-                SQL.InsertToMatches(m.FirstOpponent.Name.ToString(), m.SecondOpponent.Name.ToString(), m.Winner.Name.ToString());
-            }
+            //if (m.Winner == null)
+            //{
+            //    SQL.InsertToMatches(m.FirstOpponent.Name.ToString(), m.SecondOpponent.Name.ToString(), "INTET");
+            //}
+            //else
+            //{
+            //    SQL.InsertToMatches(m.FirstOpponent.Name.ToString(), m.SecondOpponent.Name.ToString(), m.Winner.Name.ToString());
+            //}
 
         }
 
@@ -81,7 +81,6 @@ namespace TournamentLib
             {
                 winners.Add(item.Winner);
 
-                
             }
             return winners;
         }
