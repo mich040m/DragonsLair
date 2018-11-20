@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TournamentLib;
 
+
 namespace TournamentTest
 {
     [TestClass]
@@ -59,7 +60,7 @@ namespace TournamentTest
             }
             Assert.AreEqual(true, matchesFinished);
         }
-        [TestMethod]
+      /*  [TestMethod]
         public void TestOddNumberOfTeamsGivesFreeRider()
         {
             currentTournament.AddTeam(new Team("The Andals")); // Add the nine'th team
@@ -94,6 +95,6 @@ namespace TournamentTest
             Match m = currentTournament.GetRound(1).GetMatch(winnerName);
             Assert.AreEqual(winnerName, m.Winner.Name);
         }
-
+        */
     }
 }
