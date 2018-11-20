@@ -11,6 +11,7 @@ namespace TournamentLib
         {
             if (name == "Vinter Turnering")
             {
+                SQL.InsertToTable(name, "TOURNAMENT");
                 return winterTournament;
             }
             return null;
