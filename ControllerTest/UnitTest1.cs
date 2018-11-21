@@ -17,6 +17,7 @@ namespace ControllerTest
             currentRepo = controller.GetTournamentRepository();
             currentTournament = currentRepo.GetTournament("Vinter Turnering");
             currentTournament.SetupTestTeams();  // Setup 8 teams
+            
         }
 
         [TestMethod]
@@ -28,6 +29,14 @@ namespace ControllerTest
 
             Assert.AreEqual(1, currentTournament.GetNumberOfRounds());
             Assert.AreEqual(8, currentTournament.GetTeams().Count);
+        }
+
+        [TestMethod]
+        public void TestScheduleNewTournament()
+        {
+            controller.ScheduleNewTournament("Test Turnering");
+            
+            Assert.AreEqual("Test Turnering", currentRepo.Tournaments[1].Name);
         }
 
         [TestMethod]

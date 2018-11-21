@@ -62,7 +62,7 @@ namespace TournamentLib
 
             try
             {
-                SqlCommand command1 = new SqlCommand("INSERT INTO " + "MATCHES" + " VALUES (" + "'" + a + "'" + "'" + b + "'" + "'" + c + "'" +");", conn);
+                SqlCommand command1 = new SqlCommand("INSERT INTO " + "MATCHES " + "VALUES (" + "'" + a + "', " + "'" + b + "', " + "'" + c + "'" +");", conn);
                 command1.ExecuteNonQuery();
                 conn.Close();
 

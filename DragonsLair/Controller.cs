@@ -187,7 +187,7 @@ namespace DragonsLair
 
         public void ScheduleNewTournament(string name)
         {
-            tournamentRepository.SaveTournament(name, tournamentRepository);
+            tournamentRepository.SaveTournament(name);
         }
         public void SaveMatch(string tournamentName, int roundNumber, string winningTeam)
         {
@@ -200,6 +200,9 @@ namespace DragonsLair
                 Team w = t.GetTeam(winningTeam);
                 Console.WriteLine("Vinderen er registrerert!!!!!! UUUUUHHHHHH");
                 m.Winner = w;
+
+                SQL.InsertToMatches(m.FirstOpponent.Name.ToString(), m.SecondOpponent.Name.ToString(), m.Winner.Name.ToString());
+
             }
             else
             {
@@ -208,7 +211,7 @@ namespace DragonsLair
         }
         public void ShowAllTournaments()
         {
-            tournamentRepository.ShowAllTournaments(tournamentRepository);
+            tournamentRepository.ShowAllTournaments();
         }
     }
 }
