@@ -198,11 +198,10 @@ namespace DragonsLair
             if(m != null && m.Winner == null)
             {
                 Team w = t.GetTeam(winningTeam);
-                Console.WriteLine("Vinderen er registrerert!!!!!! UUUUUHHHHHH");
+                Console.WriteLine("Vinderen er registrerert!");
                 m.Winner = w;
 
                 SQL.InsertToMatches(m.FirstOpponent.Name.ToString(), m.SecondOpponent.Name.ToString(), m.Winner.Name.ToString());
-
             }
             else
             {
