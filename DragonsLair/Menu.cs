@@ -81,6 +81,7 @@ namespace DragonsLair
         {
             Console.WriteLine("Angiv navn på turnering: ");
             string tournamentName = Console.ReadLine();
+            // redg
             Console.Clear();
             control.ScheduleNewTournament(tournamentName);
         }
